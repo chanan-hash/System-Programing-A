@@ -1,5 +1,5 @@
 #ifndef _NUMCLASS_H // For the preproccesor, if it's not defined define it, it's to keep that we are not including this code twicegcc
-#define _NUMCLASS_H  
+#define _NUMCLASS_H
 
 // This class is holding the sings of our functions
 /*will return if a number is Armstrong number.
