@@ -1,5 +1,7 @@
-// This class is holding the sings of our functions
+#ifndef _NUMCLASS_H // For the proccesor
+#define _NUMCLASS_H
 
+// This class is holding the sings of our functions
 /*will return if a number is Armstrong number*/
 int isArmstrong(int);
 
@@ -14,3 +16,5 @@ int isPrime(int);
  1! + 4! + 5! = 145
 */
 int isStrong(int);
+
+#endif

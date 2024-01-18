@@ -31,5 +31,28 @@ int isPirme(int x)
 int isStrong (int num)
 {
 int sum = 0; // keeping the sum of the digits
+while (num > 0)
+{
+    int dig = num % 10; // getting the last digit number
+    sum += factorial(dig);
+    num /= 10; // Dividing it by 10 each iteration
+}
+if (sum == num)
+{
+    return 1;
+}
+else
+{
 return 0;
+}
+}
+
+int factorial(int n)
+{
+    int fact = 1;
+    for(int i = 1; i <= n; i++)
+    {
+        fact *= i;
+    }
+    return fact;
 }
