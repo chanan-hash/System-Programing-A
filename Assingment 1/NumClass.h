@@ -1,8 +1,11 @@
-#ifndef _NUMCLASS_H // For the proccesor
-#define _NUMCLASS_H
+#ifndef _NUMCLASS_H // For the preproccesor, if it's not defined define it, it's to keep that we are not including this code twicegcc
+#define _NUMCLASS_H  
 
 // This class is holding the sings of our functions
-/*will return if a number is Armstrong number*/
+/*will return if a number is Armstrong number.
+An Armstrong number is an n-digits number that is equals to the sum of the nth powers of its digits.
+For Example: 407 = 43 + 03 + 73 = 64 + 0 + 343 = 407
+*/
 int isArmstrong(int);
 
 /*will return if a number is palindrom*/
