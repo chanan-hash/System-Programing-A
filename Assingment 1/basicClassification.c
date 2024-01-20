@@ -1,5 +1,6 @@
-#include <stdio.h>
+//#include <stdio.h>
 // #include <math.h>
+#include <stdbool.h>
 #include "NumClass.h" // This is for our own header file
 /**
  * We can't use 'math.h' library so we'll use our own function
