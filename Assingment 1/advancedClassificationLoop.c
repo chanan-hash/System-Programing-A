@@ -7,6 +7,29 @@
  * log10, and pow
  */
 
+// This we'll replace the log10 function, for getting the digit number
+int getDigNum(int number)
+{
+    int digNum = 0;
+    while (number > 0)
+    {
+        digNum++;
+        number /= 10;
+    }
+    return digNum;
+}
+
+// returning x^p
+int getPower(int x, int p)
+{
+    int pow = 1;
+    for (int i = 1; i <= p; i++)
+    {
+        pow = pow * x;
+    }
+    return pow;
+}
+
 // We'll revers the number and check if it is eqaul to the origin number
 // We'll vreate a new number that equals to the reversed one, and check if they both equals
 int isPalindrom(int num)
@@ -35,29 +58,6 @@ int isArmstrong(int n)
         temp /= 10;
     }
     return ((sum == n) ? 1 : 0);
-}
-
-// This we'll replace the log10 function, for getting the digit number
-int getDigNum(int number)
-{
-    int digNum = 0;
-    while (number > 0)
-    {
-        digNum++;
-        number /= 10;
-    }
-    return digNum;
-}
-
-// returning x^p
-int getPower(int x, int p)
-{
-    int pow = 1;
-    for (int i = 1; i <= p; i++)
-    {
-        pow = pow * x;
-    }
-    return pow;
 }
 
 // int isArmstrong(int n)
