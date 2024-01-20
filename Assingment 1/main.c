@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "NumClass.h"
+
+// TODO add here a simple check for each function
 int main()
 {
     // int x, y, i;
