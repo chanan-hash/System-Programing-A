@@ -9,7 +9,7 @@
 // We wiil run eith a loop till the sqrt of the number and check if it dividing by it
 // false = 0, true = 1
 
-int isPirme(int x)
+int isPrime(int x)
 {
     if (x <= 1)
     {
