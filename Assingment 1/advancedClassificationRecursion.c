@@ -1,35 +1,20 @@
 #include <stdio.h>
 // #include <math.h>
+#include <stdbool.h>
 #include "NumClass.h"
-
-int isPalindrom(int number)
-{
-    if (number == reversRec(number))
-    {
-        return 1;
-    }
-    return 0;
-}
-
-int isArmstrong(int num)
-{
-    int power = getDigitNum(num);
-    int res = sumOfDigit(num, power);
-    return (num == res ? 1 : 0);
-}
 
 // Helpers function for them
 // we'll check th3e palindrom in the same idea, by reversing the numbers
 // This funciton without using 'math.h' library
-
-int reversRec(int rev)
+// We gazering the 'rev' this is the the varivable for reversing the number
+int reversRec(int num, int rev)
 {
-    int dig = getDigitNum(rev);
-    if (rev == 0)
+    if (num == 0)
     {
-        return 0;
+        return rev;
     }
-    return (rev % 10 * getPowerRec(10, dig)) + reversRec(rev / 10); // The recursion call
+    rev = (rev * 10) + (num % 10);
+    return reversRec(num / 10, rev); // The recursion call
 }
 
 // Helpers functions for Armstrong number
@@ -66,6 +51,23 @@ int getPowerRec(int x, int power)
     {
         return getPowerRec(x, power - 1) * x;
     }
+}
+
+
+int isPalindrom(int number)
+{
+    if (number == reversRec(number, 0))
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int isArmstrong(int num)
+{
+    int power = getDigitNum(num);
+    int res = sumOfDigit(num, power);
+    return (num == res ? 1 : 0);
 }
 
 // int reversRec(int rev)

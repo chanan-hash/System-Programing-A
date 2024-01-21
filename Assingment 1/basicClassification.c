@@ -6,7 +6,20 @@
  * We can't use 'math.h' library so we'll use our own function
  */
 
-// We wiil run eith a loop till the sqrt of the number and check if it dividing by it
+
+// Will helps us for isStrong number function
+int factorial(int n)
+{
+    int fact = 1;
+    for (int i = 1; i <= n; i++)
+    {
+        fact *= i;
+    }
+    return fact;
+}
+
+
+// We wiil run eith a loop till the sqrt or n/2 of the number and check if it dividing by it
 // false = 0, true = 1
 
 int isPrime(int x)
@@ -34,17 +47,6 @@ int isPrime(int x)
         }
         return 1;
     }
-}
-
-
-int factorial(int n)
-{
-    int fact = 1;
-    for (int i = 1; i <= n; i++)
-    {
-        fact *= i;
-    }
-    return fact;
 }
 
 int isStrong(int num)
