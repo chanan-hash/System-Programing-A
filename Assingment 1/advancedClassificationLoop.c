@@ -33,7 +33,7 @@ int getPower(int x, int p)
 
 // We'll revers the number and check if it is eqaul to the origin number
 // We'll vreate a new number that equals to the reversed one, and check if they both equals
-int isPalindrom(int num)
+int isPalindrome(int num)
 {
     int revers = 0, dig = 0, temp = num;
     while (temp > 0)
