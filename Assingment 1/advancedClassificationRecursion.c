@@ -54,7 +54,7 @@ int sumOfDigit(int number, int power)
     return (getPowerRec(number % 10, power) + sumOfDigit(number / 10, power));
 }
 
-int isPalindrom(int number)
+int isPalindrome(int number)
 {
     if (number == reversRec(number, 0))
     {
