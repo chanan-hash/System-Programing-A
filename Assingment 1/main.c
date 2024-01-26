@@ -7,51 +7,57 @@ int main()
 {
 
     int num1, num2;
-    printf("Enter 2 numbers:\n");
-    scanf("%d%d",&num1,&num2); // Scaning the numbers for the  user
+    // printf("Enter 2 numbers:\n");
+    scanf("%d%d", &num1, &num2); // Scaning the numbers for the  user
 
-    //Printing all the Strong numbers between them
-    for (int i = num1; i <= num2; i++)
-    {
-        if (isStrong(i))
-        {
-            printf("%d, " , i);
-        }        
-    }
-    
-    printf("\n");
-
-    //Printing all the Prime numbers between them
-    for (int i = num1; i <= num2; i++)
-    {
-        if (isPrime(i))
-        {
-            printf("%d, " , i);
-        }        
-    }
-
-    printf("\n");
-
-    //Printing all the Palindrome numbers between them
-    for (int i = num1; i <= num2; i++)
-    {
-        if (isPalindrom(i))
-        {
-            printf("%d, " , i);
-        }        
-    }
-
-    printf("\n");
-
-    //Printing all the Armstrong numbers between them
+    // Printing all the Strong numbers between them
+    printf("The Armstrong numbers are:");
     for (int i = num1; i <= num2; i++)
     {
         if (isArmstrong(i))
         {
-            printf("%d, " , i);
-        }        
+            printf(" %d", i);
+        }
     }
+
+    printf("\n");
+    printf("The Palindromes are:");
+    // Printing all the Prime numbers between them
+    for (int i = num1; i <= num2; i++)
+    {
+        if (isPalindrom(i))
+        {
+            printf(" %d", i);
+        }
+    }
+
+    printf("\n");
+
+    // Printing all the Palindrome numbers between them
+    printf("The Prime numbers are:");
+    for (int i = num1; i <= num2; i++)
+    {
+        if (isPrime(i))
+        {
+            printf(" %d", i);
+        }
+    }
+
+    printf("\n");
+
+    // Printing all the Armstrong numbers between them
+    printf("The Strong numbers are:");
+    for (int i = num1; i <= num2; i++)
+    {
+        if (isStrong(i))
+        {
+            printf(" %d", i);
+        }
+    }
+
+    printf("\n");
     
+    return 0;
 
     // printf("Checking isPrime\n");
     // printf("is prime: %d\n", isPrime(0));
@@ -79,7 +85,6 @@ int main()
     // printf("is palindrom %d\n", isPalindrom(12321));
     // printf("is palindrom %d\n", isPalindrom(5));
     // printf("is palindrom %d\n", isPalindrom(10));
-    
 
     // printf("Checking is Armstrong\n");
     // printf("is Armstrong %d\n", isArmstrong(1));
@@ -92,5 +97,4 @@ int main()
     // printf("is Armstrong %d\n", isArmstrong(10));
     // printf("is Armstrong %d\n", isArmstrong(100));
     // printf("is Armstrong %d\n", isArmstrong(1007));
-    
 }

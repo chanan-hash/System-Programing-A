@@ -28,16 +28,6 @@ int getDigitNum(int n)
     return 1 + getDigitNum(n / 10);
 }
 
-// The power will get from the 'getDigitNum' function
-int sumOfDigit(int number, int power)
-{
-    if (number == 0)
-    {
-        return 0; // This is like to initializ a variable of sum
-    }
-    return (getPowerRec(number % 10, power) + sumOfDigit(number / 10, power));
-}
-
 // Power function to replcae 'math.h'
 // Getting x and power, returning x^power
 
@@ -53,6 +43,16 @@ int getPowerRec(int x, int power)
     }
 }
 
+
+// The power will get from the 'getDigitNum' function
+int sumOfDigit(int number, int power)
+{
+    if (number == 0)
+    {
+        return 0; // This is like to initializ a variable of sum
+    }
+    return (getPowerRec(number % 10, power) + sumOfDigit(number / 10, power));
+}
 
 int isPalindrom(int number)
 {
