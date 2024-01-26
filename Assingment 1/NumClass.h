@@ -9,7 +9,7 @@ For Example: 407 = 43 + 03 + 73 = 64 + 0 + 343 = 407
 int isArmstrong(int);
 
 /*will return if a number is palindrom*/
-int isPalindrom(int);
+int isPalindrome(int);
 
 /*will return if a number is prime*/
 int isPrime(int);
