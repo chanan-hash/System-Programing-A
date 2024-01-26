@@ -25,7 +25,7 @@ int main()
     // Printing all the Prime numbers between them
     for (int i = num1; i <= num2; i++)
     {
-        if (isPalindrom(i))
+        if (isPalindrome(i))
         {
             printf(" %d", i);
         }
