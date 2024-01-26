@@ -26,7 +26,10 @@ int isPrime(int x)
     {
         return 1; // It's not supposed to be a prime number, but they had a little mistake in the test, so it is
     }
-
+    else if (x == 2)
+    {
+        return 1;
+    }
     else if (x % 2 == 0) // This is an even number so it's not prime
     {
         return 0;
