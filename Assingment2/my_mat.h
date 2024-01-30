@@ -5,6 +5,7 @@
 # define MAT_SIZE 10
 # define True 1
 # define False 0
+# define INFINITY 2147483647 // The max number of int, we need it to use for initialzing the distance finding in the graph
 
 // This functions is getting the values for the matrix from the user
 // Getting a pointer to the start of the matrix, and int valuse for the size of it
