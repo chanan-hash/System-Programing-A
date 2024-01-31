@@ -5,8 +5,7 @@ CFLAGS = -Wall -g
 AFLAGS = rcs
 FP = -fPIC
 
-
-.PHONY clean all
+.PHONY: all clean
 
 # making all the files we need
 all: connections 
@@ -30,7 +29,9 @@ libmat.a: my_mat.o
 main.o: main.c my_mat.h 
 	$(CC) $(CFLAGS) -c $<
 # gcc -Wall -g  -c main.c -o main.o
-my_mat.o: my_mat.c my_mat.h #compiling boyh libraries
+
+# Compiling both libraries
+my_mat.o: my_mat.c my_mat.h 
 	$(CC) $(CFLAGS) -c $<  
 # taking them all and creating the o file
 # gcc -Wall -g  -c my_mat.c -o my_mat.o, $< means the first prerequistie in the dependency list here
