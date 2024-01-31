@@ -11,13 +11,19 @@ FP = -fPIC
 # making all the files we need
 all: connections 
 
-# The target file
-connections: 
+# Creating the target file by compile the main and the static library
+connections: main.o libmat.a
+	$(CC) $(CFLAGS) $^ -o $@
+# TODO wirte an explanition
+
+
 
 # Creating the library for our program, from my_mat.o
+# my_mat.o is the dependency, and the ar for archive is for creating the static library
+# rcs - for combine those two $@ - is the target, and $< is the first file here
 libmat.a: my_mat.o 
 	$(AR) $(AFLAGS) $@ $<
-	
+# ar rcs libmat.a my_mat.o
 
 
 # Compile to main and include it, our library for the functions
