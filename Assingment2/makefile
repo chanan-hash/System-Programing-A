@@ -13,7 +13,12 @@ all: connections
 # Creating the target file by compile the main and the static library
 connections: main.o libmat.a
 	$(CC) $(CFLAGS) $^ -o $@
-# TODO wirte an explanition
+# This is how to replace the short cuts
+# connections: main.o libmat.a
+#    $(CC) $(CFLAGS) -c main.c -o main.o
+#    $(CC) $(CFLAGS) -c libmat.c -o libmat.o
+#    $(CC) $(CFLAGS) main.o libmat.o -o connections
+
 
 
 
