@@ -30,10 +30,12 @@ int knapSack(int weight[], int values[], int selected_bool[])
             {
                 // Checking if we can take other item
                 K[i][j] = max(values[i - 1] + K[i - 1][j - weight[i - 1]], K[i - 1][j]);
+                selected_bool[i] = weight[i - 1]; // Adding who we've taken
             }
             else
             {
                 K[i][j] = K[i - 1][j]; // Means we're taking the same as above
+                selected_bool[i] = weight[i - 1]; // Adding who we've taken
             }
         }
     }
@@ -71,5 +73,8 @@ int main()
     maxProf = (weights, values, result);
 
     printf("Maximun profit: %d", maxProf);
+
+    printf("Item that give the maximum profit: ");
+
     return 0;
 }
