@@ -9,7 +9,7 @@ void matValues(int **mat, int size)
     {
         for (size_t j = 0; j < size; i++)
         {
-            sanf("%d", &mat[i][j]); // Scaning to the address in the memory fo the matrix
+            scanf("%d", &mat[i][j]); // Scaning to the address in the memory fo the matrix
         }
     }
 }
@@ -77,4 +77,5 @@ int shortesPath(int **mat, int size, int i, int j)
     {
         return -1;
     }
+    return findPath(mat, size, i, j);
 }
