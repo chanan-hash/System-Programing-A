@@ -8,7 +8,7 @@ FP = -fPIC
 .PHONY: all clean
 
 # making all the files we need
-all: connections libmat.a
+all: connections
 
 # Creating the target file by compile the main and the static library
 connections: main.o libmat.a
