@@ -6,8 +6,7 @@
  * To run this file use the command
  * gcc -Wall -g stringCheck.c -o stringCheck.exe
  * ./stringCheck.exe
- * */ 
-
+ * */
 
 // char *strcat2(char *dest, char *src)
 // {
@@ -104,6 +103,110 @@ int str2num(char *str)
         str++;
     }
     return sign * num;
+}
+
+void swap(char *s1, char *s2)
+{
+    char *temp = s1;
+    s1 = s2;
+    s2 = temp;
+}
+
+// reversing a word
+void reverse(char *s, int len)
+{
+    for (int i = 0; i < len / 2; i++)
+    {
+        swap(&s[i], &s[len - 1 - i]);
+    }
+}
+
+void swap_first_last(char arr[])
+{
+    int str_len[3], arr_len = 0;
+    int i = 0, str_count, len_count = 0;
+
+    // Calculating the stirng length
+    for (str_count = 0; str_count < 3; str_count++)
+    {
+        while (arr[i++]) // while it is not '\0'
+        {
+            len_count++; // finding the first '\0', meaning the end of the first word
+        }
+        str_len[str_count] = len_count + 1;
+        arr_len += str_len[str_count];
+        len_count = 0;
+    }
+
+    // reverse the whole string
+    reverse(arr, arr_len);
+
+    // reverse each one of the sub strings, to return it to right order
+    reverse(arr, str_len[2]);
+    reverse(arr + str_len[2], str_len[1]);
+    reverse(arr + str_len[2] + str_len[1], str_len[0]);
+}
+
+// Turning unsigned int to string
+void num2string(unsigned int num, char *str)
+{
+    int dignum = 1;
+    unsigned int tempnum = num;
+    while (tempnum > 9)
+    {
+        tempnum /= 10;
+        dignum++; // getting the number of digits of num
+    }
+    str[dignum] = 0;
+    while (dignum > 0)
+    {
+        dignum--;
+        str[dignum] = num % 10 + '0'; // + '0' making turning the int to a string/char format
+        num /= 10;
+    }
+}
+
+// checking id B string starts with A string
+unsigned int beginswith(char *A, char *B)
+{
+    while (*A && *B) // while they are not '0'
+    {
+        if (*A != *B) // if the values are different (that we're using the *, to get the value from the address)
+        {
+            break;
+        }
+        A++; // moving the pointer to the next char
+        B++;
+    }
+
+    if (*A == 0) // means ww've got to the end of *A string, and didn't break the loop till it
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+unsigned int isAbuNacci(char *str)
+{
+    int num1, num2, pos = 0;
+    char nextnum[15];
+    num1 = str[pos++] - '0'; // Taking the first number of the string
+    num2 = str[pos++] - '0'; // Taking the second number of the string
+
+    while (str[pos]) // while the string is not equals to Zero
+    {
+        num2string(num1 + num2, nextnum); // calculating the next number in the series by adding the previous two
+        if (!beginswith(nextnum, str + pos))
+        { // truning them to stirng and checking if they are the start of our string
+            return 0;
+        }
+        pos += strlen(nextnum);
+
+        num2 = num1 + num2; // switching the 2 numbers for the next check
+        num1 = num2 - num1;
+    }
+    return 1; // If we've passed the whole checking 
 }
 
 int main()
@@ -203,7 +306,7 @@ int main()
         printf("Please welcome %s, who plays the %s!\n", *(beatles + i), (i == 3) ? "drums" : "guitar");
 
         printf("Here is his name is revers: ");
-        for (int j = strlen(beatles[i])-1; j >= 0; j--)
+        for (int j = strlen(beatles[i]) - 1; j >= 0; j--)
         {
             // Same version for the printing. In the end it is like a matrix, and we're just accessing to it value, that is a char from the name
             // putchar((*(beatles + i))[j]); // the value form address of beatles --> the name, and them one of the chars --> [j]
@@ -213,5 +316,22 @@ int main()
         }
         printf("\n\n");
     }
+
+    // char arr[3] = {'Hello','My','World!'};
+    // swap_first_last(arr);
+    // printf("%s\n", arr);
+
+    char *fibonnacci = "011235813";
+    char *abunacci = "1910192948";
+    char *isabu = "15712195069";
+
+    int c1 = isAbuNacci(fibonnacci); // 1 --> true
+    int c2 = isAbuNacci(abunacci); // 1 --> true
+    int c3 = isAbuNacci(isabu); // 0 --> false
+
+    printf("%d\n",c1);
+    printf("%d\n",c2);
+    printf("%d\n",c3);
+
     return 0;
 }
