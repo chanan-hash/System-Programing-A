@@ -150,42 +150,127 @@ int main()
 
     // Exr3
 
-    int *arr;
-    int length;
-    int sum = 0;
+    // int *arr;
+    // int length;
+    // int sum = 0;
 
-    printf("Enter array's length: ");
-    scanf("%d", &length);
+    // printf("Enter array's length: ");
+    // scanf("%d", &length);
 
-    arr = (int *)malloc(length * sizeof(int));
+    // arr = (int *)malloc(length * sizeof(int));
 
-    if (arr == NULL) // Checking condition
-    {
-        printf("Insufficient memory, Exiting...\n");
-        return -1;
-    }
+    // if (arr == NULL) // Checking condition
+    // {
+    //     printf("Insufficient memory, Exiting...\n");
+    //     return -1;
+    // }
 
-    printf("Enter %d elemnts:\n", length);
-    for (int i = 0; i < length; ++i)
-    {
-        printf("Enter elment number %3d: ", i + 1);
-        scanf("%d", (arr + i)); // Equals to arr[i]
-        sum += *(arr + i);      // Adding to the sum the value at the address that we've just entered in, means the value that sits in address arr + id
-    }
+    // printf("Enter %d elemnts:\n", length);
+    // for (int i = 0; i < length; ++i)
+    // {
+    //     printf("Enter elment number %3d: ", i + 1);
+    //     scanf("%d", (arr + i)); // Equals to arr[i]
+    //     sum += *(arr + i);      // Adding to the sum the value at the address that we've just entered in, means the value that sits in address arr + id
+    // }
 
-    printf("Arrays elements are: ");
-    for (int i = 0; i < length; i++)
-    {
-        printf("%3d", *(arr + i));
-    }
+    // printf("Arrays elements are: ");
+    // for (int i = 0; i < length; i++)
+    // {
+    //     printf("%3d", *(arr + i));
+    // }
 
-    printf("\nThe sum is: %d\n", sum);
+    // printf("\nThe sum is: %d\n", sum);
 
-    free(arr);
+    // free(arr);
 
     /************************************/
 
-    //Exr4
+    // Exr4
+
+    /*Struct Person*/
+    // typedef struct _student
+    // {
+    //     char name[30];
+    //     int roll;
+    //     float prec;
+    // } student;
+
+    // student *pstd;
+
+    // /*Allocating memory dynamically for student*/
+    // pstd = (student *)malloc(1 * sizeof(student));
+
+    // if (pstd == NULL)
+    // {
+    //     printf("Insufficient Memory, Exiting...");
+    //     exit(1);
+    //     // return -1;
+    // }
+
+    // /*Read and print details*/
+
+    // printf("Enter a name: ");
+    // // gets(pstd->name);
+    // scanf("%s",pstd->name);
+
+    // printf("Enter roll number: ");
+    // scanf("%d", &pstd->roll);
+
+    // printf("Enter precentage: ");
+    // scanf("%f", &pstd->prec);
+
+    // printf("\nEnterd details are:\n");
+    // printf("Name: %s, Roll Number: %d, Precentage: %.2f\n", pstd->name, pstd->roll, pstd->prec);
+
+    // free(pstd);
+
+    /************************************/
+
+    // Exr5
+
+    struct student
+    {
+        char name[30];
+        int roll;
+        float prec;
+    };
+
+    struct student *pstd;
+    int n;
+
+    printf("Enter total number of elements: ");
+    scanf("%d", &n);
+
+    pstd = (struct student *)malloc(n * sizeof(struct student));
+
+    if (pstd == NULL)
+    {
+        printf("Insufficient Memory, Exiting...");
+        exit(1);
+        // return -1;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("\nEnter details of studen number [%2d]:\n", i + 1);
+        printf("Enter a name: ");
+        scanf(" ");                    /*clear input buffer*/
+        scanf("%s", (pstd + i)->name); // moving the pointer according to i, to put the info for each place in the memory
+        // gets((pstd + i)->name);
+
+        printf("Enter roll number: ");
+        scanf("%d", &(pstd + i)->roll);
+
+        printf("Enter precentage: ");
+        scanf("%f", &(pstd + i)->prec);
+    }
+
+    printf("\nEntered details are:\n");
+    for (int j = 0; j < n; j++)
+    {
+        printf("%30s \t %5d \t %.2f\n", (pstd + j)->name, (pstd + j)->roll, (pstd + j)->prec);
+    }
+    free(pstd);
 
     return 0;
 }
