@@ -16,7 +16,7 @@ struct _StrList
 };
 
 // Node implemantation
-Node *node_alloc(char *string, Node *next)
+Node *node_alloc(const char *string, Node *next)
 {
     Node *p = (Node *)malloc(sizeof(Node)); // Allocation memory
     if (p == NULL)                          // If it wasn't allocatd
@@ -56,7 +56,7 @@ StrList *StrList_alloc()
     return list;
 }
 
-void free_List(StrList *list)
+void StrList_free(StrList *list)
 {
     if (list == NULL)
     {
@@ -81,25 +81,26 @@ size_t StrList_size(const StrList *StrList)
 
 void StrList_insertLast(StrList *StrList, const char *data)
 {
-    // if (StrList == NULL)
-    // {
-    //     StrList = StrList_alloc();
-    // }
+    Node *p = node_alloc(data, NULL);
+    if (p == NULL)
+    {
+        return;
+    }
 
     if (StrList->head == NULL)
     {
-        Node *p = node_alloc(data, NULL);
         StrList->head = p;
     }
+
     else
     {
         Node *n = StrList->head;
-        while (n) // while (p->_next !=NULL)
+        while (n->_next != NULL) // while (p->_next !=NULL)
         {
             n = n->_next;
             // p = &((*p)._next);
         }
-        n = node_alloc(data, NULL);
+        n->_next = p;
     }
     StrList->size++;
 }
@@ -315,8 +316,8 @@ StrList *StrList_clone(const StrList *List)
 void StrList_reverse(StrList *StrList)
 {
     Node *curr = StrList->head;
-    Node *p = NULL;
-    Node *n = NULL;
+    Node *p = NULL; // previouse
+    Node *n = NULL; // next
 
     while (curr != NULL)
     { // running till the end of the list
@@ -324,7 +325,7 @@ void StrList_reverse(StrList *StrList)
         n = curr->_next;
         curr->_next = p; // will point back
         p = curr;
-        curr = p;
+        curr = n;
     }
     StrList->head = p; // Making the last become the head
 }
