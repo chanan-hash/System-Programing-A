@@ -209,10 +209,63 @@ int StrList_count(StrList *StrList, const char *data)
 
 void StrList_remove(StrList *StrList, const char *data)
 {
+
+    Node *tmp = StrList->head;
+    Node *prev = NULL;
+
+    while (tmp != NULL)
+    {
+        if (strcmp(tmp->string, data) == 0)
+        {
+            if (prev == NULL)
+            {
+                Node *current = tmp;
+                StrList->head = tmp->_next;
+                tmp = tmp->_next;
+                Node_free(current);
+            }
+
+            else
+            {
+                prev->_next = tmp->_next;
+                Node_free(tmp);
+                tmp = prev->_next;
+            }
+        }
+        else
+        {
+            prev = tmp;
+            tmp = tmp->_next;
+        }
+    }
 }
 
 void StrList_removeAt(StrList *StrList, int index)
 {
+
+    if (index < 0 || index > StrList->size) // Index Out Of Bound
+    {
+        return; // exiting program
+    }
+
+    if (index == 0)
+    {
+        Node *del = StrList->head;
+        StrList->head = StrList->head->_next;
+        Node_free(del);
+        StrList->size--;
+        return;
+    }
+
+    Node *p = StrList->head;
+    for (int i = 0; i < index - 1; i++) // finding the place to get to
+    {
+        p = p->_next;
+    }
+    Node *del = p->_next;
+    p->_next = p->_next->_next;
+    Node_free(del);
+    StrList->size--;
 }
 
 int StrList_isEqual(const StrList *StrList1, const StrList *StrList2)
@@ -274,4 +327,66 @@ void StrList_reverse(StrList *StrList)
         curr = p;
     }
     StrList->head = p; // Making the last become the head
+}
+
+int StrList_isSorted(StrList *StrList)
+{
+    Node *temp = StrList->head;
+
+    if (temp == NULL)
+    {
+        return 1;
+    }
+
+    while (temp->_next != NULL)
+    {
+        if (strcmp(temp->string, temp->_next->string) > 1)
+        {
+            return 0;
+        }
+        temp = temp->_next;
+    }
+
+    return 1;
+}
+
+void swapNode(Node *n1, Node *n2)
+{
+    char *tmp = n1->string;
+    n1->string = n2->string;
+    n2->string = tmp;
+}
+
+void bubbleSort(StrList *list)
+{
+    int swapped;
+    Node *ptr1;
+    Node *lptr = NULL;
+
+    if (list->head == NULL)
+    {
+        return;
+    }
+
+    do
+    {
+        swapped = 0;
+        ptr1 = list->head;
+
+        while (ptr1->_next != lptr)
+        {
+            if (strcmp(ptr1->string, ptr1->_next->string) > 0)
+            {
+                swapNode(ptr1, ptr1->_next);
+                swapped = 1;
+            }
+            ptr1 = ptr1->_next;
+        }
+        lptr = ptr1;
+    } while (swapped);
+}
+
+void StrList_sort(StrList *StrList)
+{
+    bubbleSort(StrList);
 }
