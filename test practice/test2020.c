@@ -55,6 +55,72 @@ int applyArray(int (*f)(int), int arr[]) {
   return result;
 }
 
+// Question 4
+// We have a struct that represent a matrix, and we want to create a function
+typedef struct _matrix {
+  int rows;
+  int cols;
+  int **data;
+} Matrix;
+
+// In the end the user we'll need to know to free it
+Matrix *createMatrix(int rows, int cols) {
+  Matrix *m =
+      (Matrix *)malloc(sizeof(Matrix));  // allocating memory for the struct
+  m->rows = rows;
+  m->cols = cols;
+  m->data = (int **)malloc(
+      rows * sizeof(int *));  // allocating memory for the rows of the matrix
+
+  for (int i = 0; i < rows; i++) {
+    m->data[i] = (int *)malloc(cols * sizeof(int));
+  }
+  return m;
+}
+
+// putting the values of the matrix
+void setMatrix(Matrix *m, int *old_mat[]) {
+  for (int i = 0; i < m->rows; i++) {
+    for (int j = 0; i < m->cols; j++) {
+      m->data[i][j] = old_mat[i][j];
+    }
+  }
+}
+
+// Addition of two matrices
+Matrix *addMatrix(Matrix *m1, Matrix *m2) {
+  if (m1->rows != m2->rows || m1->cols != m2->cols) {
+    return NULL;
+  }
+  Matrix *m3 =
+      createMatrix(m1->rows, m1->cols);  // creating the new third matrix
+  for (int i = 0; i < m1->rows; i++) {
+    for (int j = 0; j < m1->cols; j++) {
+      m3->data[i][j] = m1->data[i][j] + m2->data[i][j];
+    }
+  }
+  return m3;
+}
+
+// printing the matrix
+void printMatrix(Matrix *m) {
+  for (int i = 0; i < m->rows; i++) {
+    for (int j = 0; j < m->cols; j++) {
+      printf("%d ", m->data[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+// freeing the memory
+void freeMatrix(Matrix *m) {
+  for (int i = 0; i < m->rows; i++) {  // freeing every row
+    free(m->data[i]);
+  }
+  free(m->data);  // freeing the pointer to the rows
+  free(m);        // freeing the struct
+}
+
 int main() {
   // Question 1
   // int arr[5] = {10, 20, 30, 40, 50};
