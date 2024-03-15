@@ -43,7 +43,75 @@ void creating_fifo(int *my_fifo, int size) {
   my_fifo = (int *)malloc(size * sizeof(int));
 }
 
-// Question 2.c
+// Question 3, sorted linked list
+typedef struct Node {
+  int data;
+  struct Node *next;
+} Node, *pNode;
+
+pNode createNode(int data) {
+  pNode newNode = (pNode)malloc(sizeof(Node));
+
+  if (newNode == NULL) {
+    printf("Memory allocation failed\n");
+    return NULL;
+  }
+  newNode->data = data;
+  newNode->next = NULL;
+  return newNode;
+}
+
+// getting the start of the list, and a new node, and inserting according to the
+// sorted order
+void insert(pNode head, pNode node) {
+  if (head == NULL) {
+    head = node;
+    return;
+  }
+  pNode temp = head;
+  while (temp->next != NULL && temp->next->data < node->data) {
+    temp = temp->next;
+  }
+  node->next = temp->next;
+  temp->next = node;
+  free(temp);
+}
+
+// reversing the nodes in the list
+void reverstList(pNode head) {
+  pNode prev = NULL;
+  pNode current = head;
+  pNode next = NULL;
+
+  while (current != NULL) {
+    next = current->next;
+    current->next = prev;
+    prev = current;
+    current = next;
+  }
+  head = prev;
+}
+
+// printing all the values that are greater or equal to a given value
+void printList(pNode head, int value) {
+  pNode temp = head;
+  while (temp != NULL) {
+    if (temp->data >= value) {
+      printf("%d ", temp->data);
+    }
+    temp = temp->next;
+  }
+  printf("\n");
+}
+
+void freeList(pNode head) {
+  pNode temp;
+  while (head != NULL) {
+    temp = head;
+    head = head->next;
+    free(temp);
+  }
+}
 
 int main(void) {
   //   char *str = input();
@@ -74,18 +142,18 @@ int main(void) {
   // Question 2.a
 
   // case 1.
-  char *m[7];  // this is a pointer to array of 7 char, pointer to pointer
+  // char *m[7];  // this is a pointer to array of 7 char, pointer to pointer
 
-  // case 2.
-  char(*m2)[7];
+  // // case 2.
+  // char(*m2)[7];
 
-  printf("%zu\n", sizeof(m));   // 56
-  printf("%zu\n", sizeof(*m));  // 8 gives the amount of bytes we have
-  // char = 1 byte, 1 * 8 = 8 bits, 7 * 8 = 56 bytes
+  // printf("%zu\n", sizeof(m));   // 56
+  // printf("%zu\n", sizeof(*m));  // 8 gives the amount of bytes we have
+  // // char = 1 byte, 1 * 8 = 8 bits, 7 * 8 = 56 bytes
 
-  printf("\n");
-  printf("%zu\n", sizeof(m2));   // 56
-  printf("%zu\n", sizeof(*m2));  // 8
+  // printf("\n");
+  // printf("%zu\n", sizeof(m2));   // 56
+  // printf("%zu\n", sizeof(*m2));  // 8
 
   // Question 2.c
 
@@ -124,6 +192,8 @@ int main(void) {
 
   //   // Free dynamically allocated memory
   //   free(input);
+
+  // Question 3
 
   return 0;
 }
