@@ -159,23 +159,45 @@ int main() {
   //   k = ++*ptr;  // k = 5, ptr = Arr + 5, like ptr++, k = *ptr
   //   printf("%d\n", k);
 
-  int arr2[10] = {0};  // initializing all the elements in the array to 0
-  int *p_start = arr2;
-  // int *p_end = arr2 + 10;
-  int *p_end = &arr2[9];  // the address of the last element in the array
+  //   int arr2[10] = {0};  // initializing all the elements in the array to 0
+  //   int *p_start = arr2;
+  //   // int *p_end = arr2 + 10;
+  //   int *p_end = &arr2[9];  // the address of the last element in the array
 
-  int i = 0;
-  for (i = 0; i < 10; i++) {
-    *p_start = i;  // putting  i value in the array, and increasing the pointer
-    ++p_start;
-  }
-  p_start = arr2;  // reseting to the first element in the array
+  //   int i = 0;
+  //   for (i = 0; i < 10; i++) {
+  //     *p_start = i;  // putting  i value in the array, and increasing the
+  //     pointer
+  //     ++p_start;
+  //   }
+  //   p_start = arr2;  // reseting to the first element in the array
 
-  while (p_end >= p_start) {
-    printf("%d ", *p_end);
-    p_end -= 2;  // moving the pointer 2 indexes back
-  }
+  //   while (p_end >= p_start) {
+  //     printf("%d ", *p_end);
+  //     p_end -= 2;  // moving the pointer 2 indexes back
+  //   }
+
+  //   printf("\n");
+
+  int i;      // 0x8706
+  int *pi;    // 0x7676
+  int **ppi;  // 0x5040
+  i = 7;
+  pi = &i;    // address 0x7676, and value 0x8706
+  ppi = &pi;  // address 0x5040, and value 0x7676
+
+  printf("%d %d %d\n", i, *pi, **ppi);  // 7 7 7
+  //[0x8706 : 7] [0x7676 : 0x8706] [0x5040 : 0x7676]
 
   printf("\n");
+
+  int n = 17;
+  int *p = &n;
+  int **pp = &p;
+
+  printf("The address of pp is: %p\n", &pp);
+  printf("The address of p is: %p\n", pp);
+  printf("The address of n is: %p\n", *pp);
+  printf("The value of n is: %d\n", **pp);
   return 0;
 }
