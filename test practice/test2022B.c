@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Q1
+
 // The function gets a string apparently a number and converting it to a number
 // int func(char* str) {
 //   int sigen = 1;
@@ -102,6 +104,7 @@ char* toString(int num) {
 //   return str;       // The user we'll need to free it
 // }
 
+// Q2
 typedef struct NodeWorker {
   int id;
   char* name;
@@ -193,9 +196,55 @@ void addWorker(pworker* comp, pworker worker, int id) {
   return;
 }
 
+// Q3
+
+int is_in_string(char* str, char c) {
+  while (*str) {
+    if (*str == c) {
+      return 1;
+    }
+    str++;  // moving the pointer
+  }
+  return 0;
+}
+
+// need to think about it
+int max_new_increase_substring(char* str) {
+  char max = 'a';
+  int count = 0, i = 0;
+  while (*str) {
+    if (str[i] < str[i + 1]) {
+      count++;
+      i++;
+      max = str[i] > max ? str[i] : max;
+    } else if (str[i] > max && is_in_string(str, str[i])) {
+      count++;
+      max = str[i];
+      i++;
+    } else {
+      count = 0;
+      i++;
+    }
+  }
+
+  return 0;
+}
+
 int main() {
   char* str = "123456789";
   printf("%d\n", func(str));
   printf("%ld\n", strlen(str));
+
+  char* st = "abfaaczcak";
+  printf("%d\n", max_new_increase_substring(st));
+
+  char* string = (char*)malloc(100 * sizeof(char));
+  // gets(string);
+  // scanf("%s", string);  // or to do malloc. but it's not necessary
+
+  // int len = strlen(string);
+  printf("%d\n", max_new_increase_substring(string));
+  free(string);
+
   return 0;
 }
