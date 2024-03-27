@@ -238,13 +238,41 @@ int main() {
   char* st = "abfaaczcak";
   printf("%d\n", max_new_increase_substring(st));
 
-  char* string = (char*)malloc(100 * sizeof(char));
-  // gets(string);
-  // scanf("%s", string);  // or to do malloc. but it's not necessary
+  // Chat gpt code for this
+  char* input = NULL;  // Pointer to hold the string
+  char ch;
+  int len = 0;
 
-  // int len = strlen(string);
-  printf("%d\n", max_new_increase_substring(string));
-  free(string);
+  printf("Enter a string: ");
+
+  // Read characters one by one until newline character is encountered
+  while ((ch = getchar()) != '\n') {
+    // Allocate memory for the current character plus null terminator
+    char* temp = realloc(input, (len + 1) * sizeof(char));
+
+    if (temp == NULL) {
+      printf("Memory allocation failed!\n");
+      free(input);
+      return 1;
+    }
+
+    input = temp;
+    input[len++] = ch;  // Append the character to the string
+  }
+
+  // Add null terminator to make it a valid C string
+  char* temp = realloc(input, (len + 1) * sizeof(char));
+  if (temp == NULL) {
+    printf("Memory allocation failed!\n");
+    free(input);
+    return 1;
+  }
+  input = temp;
+  input[len] = '\0';
+
+  printf("You entered: %s\n", input);
+
+  free(input);  // Free dynamically allocated memory
 
   return 0;
 }
